@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Abandonment Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .header {
+            background-color: #DC143C;
+            color: white;
+            padding: 40px;
+            font-size: 36px;
+        }
+        .content {
+            margin: 20px;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            width: 50%;
+            margin: auto;
+        }
+        .input-field {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 90%;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #FF6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Report Abandoned Pet</div>
+    <div class="content">
+        <p>If you have found an abandoned pet, please provide the details below to help find them a home.</p>
+        <div class="form-container">
+            <h2>Pet Abandonment Form</h2>
+            <input type="text" id="petName" class="input-field" placeholder="Pet Name">
+            <input type="text" id="petType" class="input-field" placeholder="Pet Type (Dog, Cat, etc.)">
+            <input type="text" id="location" class="input-field" placeholder="Location Found">
+            <textarea id="description" class="input-field" placeholder="Describe the pet's condition"></textarea>
+            <input type="file" id="petImage" class="input-field" accept="image/*">
+            <button class="btn" onclick="submitReport()">Submit Report</button>
+        </div>
+    </div>
+    
+    <script>
+        function submitReport() {
+            let petName = document.getElementById("petName").value;
+            let petType = document.getElementById("petType").value;
+            let location = document.getElementById("location").value;
+            let description = document.getElementById("description").value;
+            
+            if (petName === "" || petType === "" || location === "" || description === "") {
+                alert("Please fill in all the fields before submitting.");
+                return;
+            }
+
+            // Create an object to store the pet report
+            let petReport = {
+                petName: petName,
+                petType: petType,
+                location: location,
+                description: description,
+                date: new Date().toLocaleString()
+            };
+
+            // Retrieve existing reports from localStorage or create a new array
+            let reports = JSON.parse(localStorage.getItem("petReports")) || [];
+
+            // Add the new report
+            reports.push(petReport);
+
+            // Save back to localStorage
+            localStorage.setItem("petReports", JSON.stringify(reports));
+
+            alert("Thank you for reporting. We will take the necessary actions to help the pet.");
+
+            // Clear the form fields
+            document.getElementById("petName").value = "";
+            document.getElementById("petType").value = "";
+            document.getElementById("location").value = "";
+            document.getElementById("description").value = "";
+        }
+    </script>
+</body>
+</html>

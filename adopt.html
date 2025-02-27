@@ -1,0 +1,123 @@
+<html>
+<head>
+    <title>Adopt a Pet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .header {
+            background-color: #8B008B;
+            color: white;
+            padding: 20px;
+            font-size: 32px;
+        }
+        .pets-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+        .pet-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+        .pet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #D8BFD8;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Adopt a Pet</div>
+    <p>Choose your new furry or feathery friend!</p>
+
+    <div class="pets-container">
+        <!-- Dogs -->
+        <div class="pet-card">
+            <img src="dog1.jpg" alt="Golden Retriever">
+            <h3>Buddy</h3>
+            <p>Friendly Golden Retriever who loves playtime!</p>
+            <button class="btn" onclick="location.href='buddy.html'">Adopt</button>
+
+        </div>
+        <div class="pet-card">
+            <img src="dog2.jpg" alt="Beagle">
+            <h3>Charlie</h3>
+            <p>Energetic Beagle looking for a forever home.</p>
+            <button class="btn" onclick="location.href='charlie.html'">Adopt</button>
+
+        </div>
+
+        <!-- Cats -->
+        <div class="pet-card">
+            <img src="cat1.jpg" alt="Tabby Cat">
+            <h3>Mittens</h3>
+            <p>Affectionate tabby cat who loves cuddles.</p>
+            <button class="btn" onclick="location.href='mittens.html'">Adopt</button>
+
+        </div>
+        <div class="pet-card">
+            <img src="cat2.jpg" alt="Siamese Cat">
+            <h3>Snowball</h3>
+            <p>Siamese cat with striking blue eyes.</p>
+            <button class="btn" onclick="location.href='snowball.html'">Adopt</button>
+
+        </div>
+
+        <!-- Rabbits -->
+        <div class="pet-card">
+            <img src="rabbit1.jpg" alt="White Bunny">
+            <h3>Thumper</h3>
+            <p>Playful white bunny who loves to hop around.</p>
+            <button class="btn" onclick="location.href='thumper.html'">Adopt</button>
+
+        </div>
+        <div class="pet-card">
+            <img src="rabbit2.jpg" alt="Brown Bunny">
+            <h3>Oreo</h3>
+            <p>Gentle brown bunny, great for families.</p>
+            <button class="btn" onclick="location.href='oreo.html'">Adopt</button>
+
+        </div>
+
+        <!-- Birds -->
+        <div class="pet-card">
+            <img src="bird1.jpg" alt="Parrot">
+            <h3>Rio</h3>
+            <p>Talkative parrot who loves to sing.</p>
+            <button class="btn" onclick="location.href='rio.html'">Adopt</button>
+
+        </div>
+        <div class="pet-card">
+            <img src="bird2.jpg" alt="Canary">
+            <h3>Sunny</h3>
+            <p>Cheerful canary with a beautiful voice.</p>
+            <button class="btn" onclick="location.href='sunny.html'">Adopt</button>
+
+        </div>
+    </div>
+
+    <a href="index.html" class="btn">Back to Home</a>
+</body>
+</html>

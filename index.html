@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Adoption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .header {
+            background-color: #8B008B;
+            color: white;
+            padding: 40px;
+            font-size: 42px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #D8BFD8;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .auth {
+            margin-right: 20px;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        .input-field {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>Welcome to Pet Adoption World</div>
+        <div class="auth">
+            <button class="btn" id="registerBtn">Register</button>
+            <button class="btn" id="signInBtn">Sign In</button>
+            <button class="btn" id="signOutBtn" style="display: none;">Sign Out</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Find Your New Best Friend</h2>
+        <p>Browse through our lovely pets looking for a forever home.</p>
+        <a href="adopt.html" class="btn">Adopt Now</a>
+    </div>
+	
+	<div class="content">
+        <h2>sell Your Best Friend</h2>
+        <p>Browse through our lovely pets looking for a forever home.</p>
+        <a href="abandon.html" class="btn">Abandon Now</a>
+    </div>
+
+
+    <!-- Registration Form -->
+    <div id="registerForm" class="popup">
+        <h2>Register</h2>
+        <input type="text" id="regUsername" class="input-field" placeholder="Username">
+        <input type="password" id="regPassword" class="input-field" placeholder="Password">
+        <button class="btn" onclick="register()">Register</button>
+        <button class="btn" onclick="closePopup('registerForm')">Cancel</button>
+    </div>
+
+    <!-- Sign In Form -->
+    <div id="signInForm" class="popup">
+        <h2>Sign In</h2>
+        <input type="text" id="username" class="input-field" placeholder="Username">
+        <input type="password" id="password" class="input-field" placeholder="Password">
+        <button class="btn" onclick="login()">Login</button>
+        <button class="btn" onclick="closePopup('signInForm')">Cancel</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Check if user is already signed in
+            if (localStorage.getItem("loggedIn") === "true") {
+                document.getElementById("signInBtn").style.display = "none";
+                document.getElementById("registerBtn").style.display = "none";
+                document.getElementById("signOutBtn").style.display = "inline-block";
+            }
+        });
+
+        // Show Popups
+        document.getElementById("registerBtn").addEventListener("click", function() {
+            document.getElementById("registerForm").style.display = "block";
+        });
+
+        document.getElementById("signInBtn").addEventListener("click", function() {
+            document.getElementById("signInForm").style.display = "block";
+        });
+
+        function closePopup(formId) {
+            document.getElementById(formId).style.display = "none";
+        }
+
+        // Registration Function
+        function register() {
+            let regUsername = document.getElementById("regUsername").value;
+            let regPassword = document.getElementById("regPassword").value;
+
+            if (regUsername === "" || regPassword === "") {
+                alert("Please fill in both fields.");
+                return;
+            }
+
+            if (localStorage.getItem(regUsername)) {
+                alert("Username already taken. Please choose another.");
+            } else {
+                localStorage.setItem(regUsername, regPassword);
+                alert("Registration Successful! You can now Sign In.");
+                closePopup('registerForm');
+            }
+        }
+
+        // Login Function
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (localStorage.getItem(username) === password) {
+                alert("Sign In Successful!");
+                localStorage.setItem("loggedIn", "true");  // Store login session
+                localStorage.setItem("currentUser", username);
+                document.getElementById("signInForm").style.display = "none";
+                document.getElementById("signInBtn").style.display = "none";
+                document.getElementById("registerBtn").style.display = "none";
+                document.getElementById("signOutBtn").style.display = "inline-block";
+            } else {
+                alert("Invalid Username or Password!");
+            }
+        }
+
+        // Logout Function
+        document.getElementById("signOutBtn").addEventListener("click", function() {
+            alert("Signed Out Successfully!");
+            localStorage.removeItem("loggedIn");
+            localStorage.removeItem("currentUser");
+            document.getElementById("signOutBtn").style.display = "none";
+            document.getElementById("signInBtn").style.display = "inline-block";
+            document.getElementById("registerBtn").style.display = "inline-block";
+        });
+    </script>
+</body>
+</html>
